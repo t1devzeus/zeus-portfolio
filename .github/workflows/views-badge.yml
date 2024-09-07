@@ -1,0 +1,41 @@
+name: Update Badge
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch: 
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Get Views Data
+      id: get_views
+      run: |
+        curl -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+             -H "Accept: application/vnd.github.v3+json" \
+             https://api.github.com/repos/${{ github.repository }}/traffic/views \
+             | jq '.count' > views.txt
+        echo "VIEW_COUNT=$(cat views.txt)" >> $GITHUB_ENV
+        rm views.txt
+
+
+    - name: Create Badge
+      id: create_badge
+      run: |
+        badge_url="https://img.shields.io/badge/views-${{ env.VIEW_COUNT }}-blue?style=for-the-badge"
+        curl -o views-badge.svg "${badge_url}"
+
+    - name: Commit and Push Badge
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add views-badge.svg
+        git commit -m 'Update views badge'
+        git push
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}

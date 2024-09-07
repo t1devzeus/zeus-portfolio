@@ -1,0 +1,378 @@
+/* General Reset and Body Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: #4A4A4A;
+  width: 100%;
+  height: 100%;
+  --color: rgba(114, 114, 114, 0.3);
+  background-color: #191a1a;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+  background-size: 55px 55px;
+}
+
+/* Container for Main Content */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* From Uiverse.io by LightAndy1 */ 
+.tooltip-container {
+  position: relative;
+  background-color: #ff3cac;
+  background-image: linear-gradient(
+    225deg,
+    #ff3cac 0%,
+    #784ba0 50%,
+    #2b86c5 100%
+  );
+  transition: all 0.2s;
+  font-size: 17px;
+  /*padding: 0.7em 1.8em;*/
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  left: -150px;
+}
+.tooltip-container .borde-back {
+  width: 60px;
+  height: 60px;
+  background-color: #232428;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.tooltip-container .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background-color: #5865f2;
+}
+
+.tooltip {
+  position: absolute;
+  top: -2;
+  left: -45px;
+  transform: translateX(
+    -32%
+  ); 
+  width: 160px;
+  height: 52px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s;
+  border-radius: 50px;
+  background-color: #5865f2;
+  background-image: linear-gradient(
+    -90deg,
+    #ff73fa 0%,
+    #5865f2 75%,
+    #5865f2 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 26px;
+  padding-left: 50px;
+  color: #fff;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+.tooltip::before {
+  position: absolute;
+  content: "";
+  height: 0.6em;
+  width: 0.6em;
+  right: -0.2em;
+  top: 50%; 
+  transform: translateY(-50%) rotate(45deg); 
+  background: var(--background);
+}
+
+.tooltip-container:hover .tooltip {
+  left: 150%; 
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: -10;
+  cursor: pointer;
+}
+.tooltip-container:hover {
+  transform: translateX(-50px);
+  transition: 0.5s linear;
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+  position: fixed; /* Make the navbar stick to the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 15px 20px;
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Ensure the navbar is above other content */
+  /* Ensure content doesn’t hide behind navbar */
+  box-sizing: border-box;
+}
+
+/* Navigation Buttons Styles */
+.nav_btns, .projects_btn {
+  position: relative;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #725AC1;
+  background: transparent;
+  transition: all 0.3s ease-out;
+  border: 2px solid #725AC1;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 0 #725AC1;
+}
+
+.nav_btns:hover, .projects_btn:hover {
+  color: white;
+  background-color: #725AC1;
+  box-shadow: inset 0 -100px 0 0 #725AC1;
+  cursor: pointer;
+}
+
+.nav_btns:active, .projects_btn:active {
+  transform: scale(0.95);
+}
+
+.projects_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 45px;
+  padding: 0px 15px;
+  background-color: rgb(49, 49, 83);
+  gap: 10px;
+}
+
+.folderContainer {
+  width: 40px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.fileBack {
+  z-index: 1;
+  width: 80%;
+  height: auto;
+}
+
+.filePage {
+  width: 50%;
+  height: auto;
+  position: absolute;
+  z-index: 2;
+  transition: all 0.3s ease-out;
+}
+
+.fileFront {
+  width: 85%;
+  height: auto;
+  position: absolute;
+  z-index: 3;
+  opacity: 0.95;
+  transform-origin: bottom;
+  transition: all 0.3s ease-out;
+}
+
+.text {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.projects_btn:hover .filePage {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.projects_btn:hover .fileFront {
+  transform: rotateX(30deg);
+}
+
+/* Content Section Styles */
+section {
+  padding: 60px 20px;
+  margin: 40px 0;
+  background: #2b2b2b;
+  border-radius: 8px;
+  margin-top: 80px; /* Add top margin to avoid content hiding behind navbar */
+}
+
+h2 {
+  font-size: 60px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: oblique;
+  margin: 0;
+  padding-bottom: 20px;
+  color: #6E5BBB;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #6E5BBB, #6E5BBB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 5s linear infinite;
+}
+
+/* Paragraphs */
+p {
+  font-size: 18px;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+  color: #e0e0e0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav_btns, .projects_btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+/* Card Styling */
+.skill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  width: 220px;
+  height: 320px;
+  background: #282828;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  color: #e0e0e0;
+}
+
+.card:hover {
+  background: #3b3b3b;
+  color: #fff;
+  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.card p {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* Circle styling */
+.circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.circle img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+.card:hover .circle {
+  background: #000;
+  border-color: #fff;
+}
+
+.card:hover .circle img {
+  filter: invert(1);
+}
+
+.copyright {
+  background-color: #2B2B2B;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: absolute;
+  bottom: 100;
+  width: 100%;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.copyright h1 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.copyright a {
+  color: #6E5BBB;
+  text-decoration: none;
+}
+
+.copyright a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+/* Animation for gradient background shift */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
