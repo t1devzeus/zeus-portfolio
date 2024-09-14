@@ -1,8 +1,10 @@
+@import url('https://fonts.cdnfonts.com/css/cascadia-code');
+
 /* General Reset and Body Styles */
 body, html {
   margin: 0;
   padding: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Cascadia Code', sans-serif;
   background-color: #4A4A4A;
   width: 100%;
   height: 100%;
@@ -91,7 +93,7 @@ body, html {
   padding-left: 50px;
   color: #fff;
   font-size: 18px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Cascadia Code', sans-serif;
   font-weight: 600;
 }
 
@@ -235,7 +237,7 @@ section {
 
 h2 {
   font-size: 60px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Cascadia Code', sans-serif;
   font-style: oblique;
   margin: 0;
   padding-bottom: 20px;

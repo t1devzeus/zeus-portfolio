@@ -2,7 +2,7 @@ name: Update Badge
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0,30 * * * *' 
   workflow_dispatch: 
 
 jobs:
@@ -19,23 +19,21 @@ jobs:
         curl -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
              -H "Accept: application/vnd.github.v3+json" \
              https://api.github.com/repos/${{ github.repository }}/traffic/views \
-             | jq '.count' > views.txt
-        echo "VIEW_COUNT=$(cat views.txt)" >> $GITHUB_ENV
-        rm views.txt
-
+             | jq '.count' > view_count.txt
+        echo "VIEW_COUNT=$(cat view_count.txt)" >> $GITHUB_ENV
 
     - name: Create Badge
       id: create_badge
       run: |
-        badge_url="https://img.shields.io/badge/views-${{ env.VIEW_COUNT }}-blue?style=for-the-badge"
+        badge_url="https://img.shields.io/badge/total%20views-${{ env.VIEW_COUNT }}-blue?style=for-the-badge"
         curl -o views-badge.svg "${badge_url}"
 
     - name: Commit and Push Badge
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
-        git add views-badge.svg
+        git add views-badge.svg view_count.txt
         git commit -m 'Update views badge'
         git push
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
