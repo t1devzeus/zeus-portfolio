@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://zeus.is-a.dev">
-    <img src="assets/zeus_pfp.png" alt="Logo" width="80" height="80">
+    <img src="assets/ZEUS_PFP.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">zeus's Portfolio</h3>
